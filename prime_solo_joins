@@ -1,0 +1,38 @@
+--1
+SELECT * FROM customers
+JOIN addresses ON customers.id = addresses.customer_id;
+
+--2
+SELECT * FROM orders
+JOIN line_items ON orders.address_id = line_items.order_id;
+
+--3
+SELECT warehouse.warehouse FROM warehouse INNER JOIN warehouse_product on warehouse.id = warehouse_product.warehouse_id
+JOIN products ON products.id = warehouse_product.product_id
+WHERE products.description = 'cheetos';
+
+
+—-4
+SELECT warehouse.warehouse FROM warehouse INNER JOIN warehouse_product on
+warehouse.id = warehouse_product.warehouse_id
+JOIN products ON products.id = warehouse_product.product_id
+WHERE products.description = 'diet pepsi';
+
+--5
+SELECT count(orders.total), customers.first_name
+FROM orders
+JOIN addresses ON orders.address_id = addresses.id
+JOIN customers ON addresses.customer_id = customers.id
+GROUP BY customers.first_name;
+
+--6
+SELECT count(*) FROM customers;
+
+
+--7
+SELECT count(*) FROM products;
+
+--8
+
+SELECT sum(warehouse_product.on_hand) FROM warehouse_product
+WHERE warehouse_product.product_id = 6;
